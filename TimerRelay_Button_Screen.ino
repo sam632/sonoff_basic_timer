@@ -7,8 +7,8 @@
 #include <EEPROM.h>
 
 //----------------------------------------------------------------------------
-const char *ssid = "Orb";
-const char *password = "Amanda";
+const char *ssid = "NAME_OF_DEVICE";
+const char *password = "PASSWORD"; //not used
 ESP8266WebServer server ( 80 );
 //----------------------------------------------------------------------------
 
@@ -44,6 +44,7 @@ uint32_t unixstart1, unixend1;
 int currstate1 = 0, prevstate1 = 0;
 
 //----------------------------------------------------------------------------
+//Edit colours and names here for your own webpage 
 void handleRoot() {
   server.send(200, "text/html",
               "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Timer Relay</title>"
@@ -121,16 +122,16 @@ void handleRoot() {
               "xhttp.send();"
               "}"
               "</script>"
-              "</head><body onLoad='init()' style='background-color:#222222;'><h3 style='color:#0cbfe9;'>Amanda's Orb</h3>"
+              "</head><body onLoad='init()' style='background-color:#222222;'><h3 style='color:#0cbfe9;'>Relay Timer</h3>"
               "<table>"
               "<tr><td style='color:white;'><B>Current Time</B></td><td style='color:white;'> : <input type='datetime-local' name='dtl2' id='dtl2'></td></tr>"
-              "<tr><td style='color:white;'><B>Orb Time</B></td><td style='color:white;'> : <input type='datetime-local' name='dtl' id='dtl' onChange='setDateTime();'></td></tr>"
+              "<tr><td style='color:white;'><B>Relay Time</B></td><td style='color:white;'> : <input type='datetime-local' name='dtl' id='dtl' onChange='setDateTime();'></td></tr>"
               "<tr><td></td><td><input type='button' value='Set to Current Date and Time' onClick='setNow()'></td></tr>"
               "</table><BR>"
               "<HR>"
 
               "<table border='0'>"
-              "<tr><td style='color:white;'><B>Orb</B></td><td style='color:red;font-weight:bold;'><span style='color:black;font-weight:normal;'>: </span> <input type='radio' name='r1' value='0' checked onclick='manual(this);'> OFF  &nbsp;</td><td style='color:green;font-weight:bold;'><input type='radio' name='r1' value='1' onclick='manual(this);'> ON </td></tr>"
+              "<tr><td style='color:white;'><B>Relay</B></td><td style='color:red;font-weight:bold;'><span style='color:black;font-weight:normal;'>: </span> <input type='radio' name='r1' value='0' checked onclick='manual(this);'> OFF  &nbsp;</td><td style='color:green;font-weight:bold;'><input type='radio' name='r1' value='1' onclick='manual(this);'> ON </td></tr>"
               "<tr><td style='color:white;'><B>Mode </B></td><td style='color:white;'>: <input type='radio' name='m1' value='1' checked onclick='setMode(1, this);'> TIMER  &nbsp;</td><td style='color:white;'><input type='radio' name='m1' value='2' onclick='setMode(1, this);'> MANUAL </td></tr>"
               "</table>"
               "<BR>"
