@@ -443,9 +443,7 @@ void button1_callback() {
 
   // read the state of the pushbutton value
   button1State = digitalRead(button1_gpio);
-//  Serial.print("Button 1 state is:"); Serial.println(button1State);
-  prevstate1 = currstate1;
-//  Serial.print("The mode is:"); Serial.println(MODE1);
+
   if (button1State == LOW) {
     if (MODE1 == TIMER_MODE) {
       
@@ -454,18 +452,15 @@ void button1_callback() {
 //      Serial.print("MODE1 changed to:"); Serial.println(MODE1);
       if (STATE1 == 1) {
 
-        currstate1 = LOW;
         STATE1 = 0;
 //        Serial.print("Relay changed to:"); Serial.println(STATE1);
       }
       else if (STATE1 == 0)  {
 
-        currstate1 = HIGH;
         STATE1 = 1;
 //        Serial.print("Relay changed to:"); Serial.println(STATE1);
       }
       EEPROM.write(6, STATE1);
-      EEPROM.write(4, currstate1);
       EEPROM.write(5, MODE1);
 
       server.send(200, "text/html", getResp());
@@ -474,18 +469,15 @@ void button1_callback() {
       
       if (STATE1 == 1) {
 
-        currstate1 = LOW;
         STATE1 = 0;
 //        Serial.print("Relay changed to:"); Serial.println(STATE1);
       }
       else if (STATE1 == 0)  {
 
-        currstate1 = HIGH;
         STATE1 = 1;
 //        Serial.print("Relay changed to:"); Serial.println(STATE1);
       }
       EEPROM.write(6, STATE1);
-      EEPROM.write(4, currstate1);
       EEPROM.write(5, MODE1);
 
       server.send(200, "text/html", getResp());
